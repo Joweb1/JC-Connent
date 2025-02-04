@@ -1,0 +1,509 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+   <!-- <link rel="stylesheet" href="./tailwind.min.css">-->
+    <script src="./tailwind.global.js"></script>
+<title>JC Connent</title>
+	<style type="text/css">
+	@import url('./lato/lato.css');
+	@import url('./Westport Rounded Book/Westport Rounded Book.css');
+	*{
+		font-family:"Westport Rounded Book","Lato", sans-serif;
+		/*color:black;*/
+		padding:0;
+		margin:0;
+	}
+	:root{
+		--color-deep:#00004E;
+	}
+	main{
+		padding-top:60px;
+	}
+	/* Navigation Style */
+	.top-nav {
+		position:fixed;
+		top:0;
+		font-family:sans-serif;
+		background:white;
+		width:100vw;
+		display:flex;
+		padding:10px 12px;
+		align-items:center;
+		justify-content:space-between;
+		border-radius:0px 0px 25px 0px;
+		box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+		z-index:3;
+	}
+	.top-nav div{
+		margin:3px 1vw;
+	}
+	.top-nav .nav-icon {
+		width:45px;
+		height:45px;
+		background:var(--color-deep);
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		border-radius:50px;
+	}
+	.top-nav .nav-icon i{
+		font-size:20px;
+		color:white;
+		text-align:center;
+		display:block;
+	}
+	 .top-nav .logo .nav-logo {
+	 	width:60px;
+	 	border-radius:50px;
+	 }
+	 .top-nav .brand {
+	 	margin:3px 3vw !important;
+	 }
+	 .top-nav .brand .brand-name {
+	 	font-size:20px;
+	 	font-weight:800;
+	 }
+	 .top-nav .brand p{
+		 font-size:11px;
+		 font-weight:400;
+	 }
+	 /* Navigation Ends */
+	 
+	 /* Hero Section */
+	 .hero-section {
+	 	width:100vw;
+	 	height:auto;
+	 	position:relative;
+	 	font-family:"Westport Rounded Book", sans-serif;
+	 }
+	 .hero-section img{
+	 	position:relative;
+	 	z-index:-1;
+	 }
+	 .hero-section .hero-overlay {
+	 	position:absolute;
+	 	display:flex;
+	 	flex-direction:column;
+	 	align-items:center;
+	 	justify-content:center;
+	 	width:100%;
+	 	height:100%;
+	 	background:rgba(10,3,80,0.25);
+	 	top:0;
+	 }
+	 .hero-section .hero-text {
+	 	font-size:8vw;
+	 	font-weight:700;
+	 	color:white;
+	 	margin:0px 5vw;
+	 	text-align:center;
+	 	line-height:30px;
+	 	text-shadow:0px 0px 20px rgba(0,0,0,1);
+	 }
+	 .hero-section .hero-search {
+	 	display:block;
+	 	background:rgba(255,255,255,0.7);
+	 	width:70vw;
+	 	max-width:500px;
+	 	outline:none;
+	 	padding:5px 40px;
+	 	margin-top:10px;
+	 	border-radius:50px;
+	 	transition:border 0.3s ease-in-out;
+	 	transition:background 0.3s ease-in-out;
+	 }
+	 .hero-search:focus{
+	 	border:1.5px solid white;
+	 	background:rgba(255,255,255,0.8);
+	 }
+	 .hero-search::-webkit-search-cancel-button{
+	 	-webkit-appearance:none;
+	 	appearance:none;
+	 	display:none;
+	 }
+	 
+	 .clear-btn {
+	 position: absolute;
+	 right: 10px;
+	 top: 65%;
+	 font-size:18px;
+	 font-weight:500;
+	 transform: translateY(-50%);
+	 border: none;
+	 padding: 5px;
+	 cursor: pointer;
+	 border-radius: 50%;
+	 display: none;
+	 }
+	 .search-btn{
+	 position: absolute;
+	 left:8px;
+	 top: 27%;
+	 font-size:18px;
+	 font-weight:500;
+	 transform: translateY(0%);
+	 border: none;
+	 padding: 5px;
+	 cursor: pointer;
+	 }
+	 .search-btn i{
+	 	color:rgba(0,0,0,0.7);
+	 }
+	 /* End Hero Section */
+	 
+	 /* Category section */
+	 .categories {
+	 	font-family:"Westport Rounded Book","Lato", sans-serif;
+	 }
+	 .cat-head {
+	 	display:flex;
+	 	width:100%;
+	 	align-items:center;
+	 	justify-content:space-around;
+	 	margin:40px auto;
+	 	margin-bottom:20px;
+	 	padding:0px 40px;
+	 }
+	 .cat-head div{
+	 	width:30%;
+	 	height:1px;
+	 	background:gray;
+	 	opacity:0.6;
+	 	border-radius:50px;
+	 }
+	 .cat-head p{
+	 	font-size:18px;
+	 	font-weight:600;
+	 	letter-spacing:0.5px;
+	 	padding:6px 30px;
+	 	color:white;
+	 	background:var(--color-deep);
+	 	border-radius:50px;
+	 }
+	 .cat-head-text {
+	 	font-size:20px;
+	 	font-weight:500;
+	 	margin:auto;
+	 	text-align:center;
+	 }
+	 .categories .cat-head-text span{
+	 	font-weight:700;
+	 }
+	 .categories .cat-group {
+	 	display:flex;
+	 	flex-direction:column;
+	 	align-items:center;
+	 	margin:40px auto;
+	 }
+	 .cat-group .group-item {
+	 	position:relative;
+	 }
+	 .categories .cat-group .group-item img{
+	 	width:85vw;
+	 	border-radius:30px;
+	 }
+	 .cat-group .group-item .item-overlay{
+	 	top:0;
+	 	display:flex;
+	 	flex-direction:column;
+	 	align-items:center;
+	 	justify-content:center;
+	 	background:rgba(70,73,0,0.3);
+	 	height:92%;
+	 	width:92%;
+	 	margin:4%;
+	 	border-radius:30px;
+	 	border:2px solid rgba(255,255,255,0.3);
+	 }
+	 .cat-group .group-item .item-overlay .item-text {
+	 	font-weight:700;
+	 	color:white;
+	 	font-size:25px;
+	 	text-shadow:0px 0px 20px rgba(0,0,0,1);
+	 }
+	 .group-item .item-overlay .item-btn {
+	 	display:flex;
+	 	align-items:center;
+	 	justify-content:space-between;
+	 	padding:1px 20px;
+	 	padding-left:0px;
+	 	border-radius:50px;
+	 	width:65%;
+	 	border:1px solid rgba(255,255,255,0.8);
+	 	transition:0.3s ease-in-out;
+	 }
+	 .item-overlay .item-btn i{
+	 	display:flex;
+	 	justify-content:center;
+	 	align-items:center;
+	 	text-align:center;
+	 	border-radius:50%;
+	 	width:25px;
+	 	height:25px;
+	 	margin:4px 5px;
+	 	border:1px solid rgba(255,255,255,0.8);
+	 	transition:0.3s ease-in-out;
+	 }
+	 .item-overlay .item-btn p{
+	 	display:flex;
+	 	justify-content:center;
+	 	align-items:center;
+	 	text-align:center;
+	 	font-weight:500;
+	 	flex-grow:1;
+	 	transition:0.3s ease-in-out;
+	 }
+	 .item-btn:hover {
+	 	background:rgba(255,255,255,0.9);
+	 	border:1px solid var(--color-deep);
+	 }
+	 .item-btn:hover p{
+	 	color:var(--color-deep);
+	 }
+	 .item-btn:hover i{
+	 	background:var(--color-deep);
+	 	border:1px solid var(--color-deep);
+	 }
+	 
+	 /* Category Section End */
+	 
+	 /* Recent Product */
+	 
+	 .product-grid {
+	 display: grid;
+	 grid-template-columns: repeat(2, 1fr); /* Two columns */
+	 gap: 20px;
+	 max-width: 800px;
+	 margin: auto;
+	 }
+	 
+	 .product {
+	 background: #fff;
+	 padding: 15px;
+	 border-radius: 8px;
+	 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	 text-align: center;
+	 width:100%;
+	 }
+	 
+	 .product img {
+	 width: 100%;
+	 max-height: 200px;
+	 object-fit: cover;
+	 border-radius: 5px;
+	 margin-bottom:15px;
+	 }
+	 
+	 .product h3 {
+	 margin: 5px 0;
+	 font-size: 16px;
+	 }
+	 
+	 .product .price {
+	 font-weight: 800;
+	 color: var(--color-deep);
+	 margin:10px auto;
+	 }
+	 
+	 .add-to-cart {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 background: #27ae60;
+	 color: white;
+	 border: none;
+	 padding: 10px;
+	 margin-top:10px;
+	 width: 100%;
+	 border-radius: 5px;
+	 cursor: pointer;
+	 font-size: 14px;
+	 font-weight:600;
+	 transition: background 0.3s;
+	 }
+	 
+	 .add-to-cart:hover {
+	 background: #219150;
+	 }
+	 
+	 .cart-icon {
+	 margin-right: 8px;
+	 }
+	 
+	 .in-cart {
+	 background: #e67e22 !important;
+	 }
+	 .cat-head .view-more {
+	 	font-family:'Lato', sans-serif;
+	 	font-size:14px !important;
+	 }
+	 .categories.recent-product{
+	 	padding-top:20px;
+	 	border-radius:160px;
+	 	background:rgba(200,200,250,1);
+	 }
+	 
+	</style>
+</head>
+<body>
+	<main>
+	<!-- Navigation Starts -->
+		<nav class="top-nav" >
+			<div class="logo" >
+				<img class="nav-logo"  src="./images/logo.jpg" >
+			</div>
+			<div class="brand flex-grow" >
+				<h1 class="brand-name" >JC CONNECT</h1>
+				<p>HOME OF VARIETY</p>
+			</div>
+			<div class="nav-icon" >
+				<i class="fa fa-cart-shopping" ></i>
+			</div>
+			<div class="nav-icon" >
+				<i class="fa fa-bars" ></i>
+			</div>
+		</nav>
+	<!-- Navigation Stops -->
+	
+	<!-- Hero Section -->
+		<div class="hero-section" >
+			<img src="./images/hero.png" >
+			<div class="hero-overlay" >
+				<div class="hero-text" >Home of variety of products</div>
+				<div class="relative" >
+					<button class="search-btn" id="searchBtn"><i class="fa fa-search" ></i></button>
+					<input class="hero-search" type="search" id="search"  placeholder="Search products"  >
+					<button class="clear-btn" id="clearBtn"><i class="fa fa-close" ></i></button>
+				</div>
+			</div>
+		</div>
+	<!-- Hero Section Ends -->
+	
+	<!-- Category Section -->
+		<div class="categories" >
+			<div class="cat-head" >
+				<div></div>
+				<p>Categories</p>
+				<div></div>
+			</div>
+			<h2 class="cat-head-text" ><span>JC Connect's</span> Collections</h2>
+			<div class="cat-group" >
+				<div class="group-item" >
+					<img src="./images/electronics.jpg" >
+					<div class="absolute item-overlay electronic" >
+						<div class="item-text" >Electronic Items</div>
+						<div class="item-btn" >
+							<i class="fa fa-angle-right text-center text-white" ></i>
+							<p class="text-center text-white" >View collection</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cat-group" >
+				<div class="group-item" >
+					<img src="./images/fashion.jpg" >
+					<div class="absolute item-overlay household" >
+						<div class="item-text" >Fashion Items</div>
+						<div class="item-btn" >
+							<i class="fa fa-angle-right text-center text-white" ></i>
+							<p class="text-center text-white" >View collection</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cat-group" >
+				<div class="group-item" >
+					<img src="./images/household.jpg" >
+					<div class="absolute item-overlay" >
+						<div class="item-text" >Household Items</div>
+						<div class="item-btn" >
+							<i class="fa fa-angle-right text-center text-white" ></i>
+							<p class="text-center text-white" >View collection</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- Category Section Ends -->
+	
+	<!-- Popular Section Starts -->
+		<div class="categories recent-product" >
+			<div class="cat-head" >
+				<div></div>
+				<p>Recent</p>
+				<div></div>
+			</div>
+			<h2 class="cat-head-text" ><span>New</span> products</h2>
+			
+			<div class="product-grid">
+			<div class="product">
+			<img src="./images/household.jpg" alt="Product 1">
+			<h3>Product 1</h3>
+			<span class="price">₦2, 000.00</span>
+			<button class="add-to-cart" onclick="addToCart(this)">
+			<i class="fa fa-shopping-cart cart-icon"></i> Add to Cart
+			</button>
+			</div>
+			
+			<div class="product">
+			<img src="./images/household.jpg" alt="Product 2">
+			<h3>Product 2</h3>
+			<span class="price">₦2, 025.00</span>
+			<button class="add-to-cart" onclick="addToCart(this)">
+			<i class="fa fa-shopping-cart cart-icon"></i> Add to Cart
+			</button>
+			</div>
+			
+			<div class="product">
+			<img src="./images/household.jpg" alt="Product 3">
+			<h3>Product 3</h3>
+			<span class="price">₦30, 930.00</span>
+			<button class="add-to-cart" onclick="addToCart(this)">
+			<i class="fa fa-shopping-cart cart-icon"></i> Add to Cart
+			</button>
+			</div>
+			
+			<div class="product">
+			<img src="./images/household.jpg" alt="Product 4">
+			<h3>Product 4</h3>
+			<span class="price">$235, 718.00</span>
+			<button class="add-to-cart" onclick="addToCart(this)">
+			<i class="fa fa-shopping-cart cart-icon"></i> Add to Cart
+			</button>
+			</div>
+			</div>
+			<div class="cat-head" >
+			<p class="view-more" >View full list</p>
+			</div>
+		</div>
+		
+	</main>
+	<script type="text/javascript">
+	const searchInput = document.getElementById("search");
+	const clearBtn = document.getElementById("clearBtn");
+	
+	// Show the clear button when text is entered
+	searchInput.addEventListener("input", function () {
+	clearBtn.style.display = this.value ? "block" : "none";
+	});
+	
+	// Clear input when button is clicked
+	clearBtn.addEventListener("click", function () {
+	searchInput.value = "";
+	clearBtn.style.display = "none";
+	searchInput.focus();
+	});
+	
+	function addToCart(button) {
+		let count = parseInt(button.dataset.count || 0) + 1;
+		button.dataset.count = count;
+		button.innerHTML = `<i class="fas fa-shopping-cart cart-icon"></i> ${count} ${count === 1 ? 'item' : 'items'} in Cart`;
+		button.classList.add('in-cart');
+	}
+	</script>
+</body>
+</html>
