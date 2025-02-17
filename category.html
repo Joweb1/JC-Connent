@@ -1,0 +1,555 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+   <!-- <link rel="stylesheet" href="./tailwind.min.css">-->
+    <script src="./tailwind.global.js"></script>
+<title>JC Connent</title>
+	<style type="text/css">
+	@import url('./lato/lato.css');
+	@import url('./Westport Rounded Book/Westport Rounded Book.css');
+	*{
+		font-family:"Westport Rounded Book","Lato", sans-serif;
+		/*color:black;*/
+		padding:0;
+		margin:0;
+	}
+	:root{
+		--color-deep:#00004E;
+		--color-light:rgba(104, 128, 255, 1);
+	}
+	main{
+		padding-top:60px;
+	}
+	/* Navigation Style */
+	.top-nav {
+		position:fixed;
+		top:0;
+		font-family:sans-serif;
+		background:white;
+		width:100vw;
+		display:flex;
+		padding:10px 12px;
+		align-items:center;
+		justify-content:space-between;
+		border-radius:0px 0px 25px 0px;
+		box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+		z-index:3;
+	}
+	.top-nav div{
+		margin:3px 1vw;
+	}
+	.top-nav .nav-icon {
+		position:relative;
+		width:45px;
+		height:45px;
+		background:var(--color-deep);
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		border-radius:50px;
+		cursor:pointer;
+		transition: all 0.3s ease;
+	}
+	.top-nav .nav-icon i{
+		font-size:20px;
+		color:white;
+		text-align:center;
+		display:block;
+	}
+	 .top-nav .logo .nav-logo, .nav-logo {
+	 	width:60px;
+	 	border-radius:50px;
+	 }
+	 .top-nav .nav-icon .nav-icon-label{
+	 	position: absolute;
+	 	right: -10px;
+	 	top: -10px;
+	 	width:25px;
+	 	height:25px;
+	 	display:flex;
+	 	align-items:center;
+	 	justify-content:center;
+	 	font-weight:800;
+	 	border-radius:100%;
+	 	font-size:14px;
+	 	color:black;
+	 	background: rgba(255,180,30,1);
+	 	text-align:center;
+	 	transition: all 0.3s ease;
+	 }
+	 .top-nav .brand {
+	 	margin:3px 3vw !important;
+	 }
+	 .top-nav .brand .brand-name {
+	 	font-size:20px;
+	 	font-weight:800;
+	 	font-family:sans-serif;
+	 }
+	 .top-nav .brand p{
+		 font-size:11px;
+		 font-weight:400;
+	 }
+	 /* Navigation Ends */
+	 
+	 /* Category section */
+	 .categories {
+	 	font-family:"Westport Rounded Book","Lato", sans-serif;
+	 }
+	 .cat-head {
+	 	display:flex;
+	 	width:100%;
+	 	align-items:center;
+	 	justify-content:space-around;
+	 	margin:40px auto;
+	 	margin-bottom:20px;
+	 	padding:0px 40px;
+	 }
+	 .cat-head div{
+	 	width:30%;
+	 	height:1px;
+	 	background:gray;
+	 	opacity:0.6;
+	 	border-radius:50px;
+	 }
+	 .cat-head p{
+	 	font-size:18px;
+	 	font-weight:600;
+	 	letter-spacing:0.5px;
+	 	padding:6px 30px;
+	 	color:white;
+	 	background:var(--color-deep);
+	 	border-radius:50px;
+	 }
+	 .cat-head-text {
+	 	font-size:20px;
+	 	font-weight:500;
+	 	margin:auto;
+	 	text-align:center;
+	 }
+	 .categories .cat-head-text span{
+	 	font-weight:700;
+	 }
+	 .categories .cat-group {
+	 	display:flex;
+	 	flex-direction:column;
+	 	align-items:center;
+	 	margin:40px auto;
+	 }
+	 .cat-group .group-item {
+	 	position:relative;
+	 }
+	 .categories .cat-group .group-item img{
+	 	width:85vw;
+	 	border-radius:30px;
+	 }
+	 .cat-group .group-item .item-overlay{
+	 	top:0;
+	 	display:flex;
+	 	flex-direction:column;
+	 	align-items:center;
+	 	justify-content:center;
+	 	background:rgba(70,73,0,0.3);
+	 	height:92%;
+	 	width:92%;
+	 	margin:4%;
+	 	border-radius:30px;
+	 	border:2px solid rgba(255,255,255,0.3);
+	 }
+	 .cat-group .group-item .item-overlay.o{
+	 		margin:1%;
+	 		height:97%;
+	 		width:98%;
+	 	background:rgba(0,13,70,0.7);
+	 }
+	 .cat-group .group-item .item-overlay .item-text {
+	 	font-weight:700;
+	 	color:white;
+	 	font-size:25px;
+	 	text-shadow:0px 0px 20px rgba(0,0,0,1);
+	 }
+	 .group-item .item-overlay .item-btn {
+	 	display:flex;
+	 	align-items:center;
+	 	justify-content:space-between;
+	 	padding:1px 20px;
+	 	padding-left:0px;
+	 	border-radius:50px;
+	 	width:65%;
+	 	border:1px solid rgba(255,255,255,0.8);
+	 	transition:0.3s ease-in-out;
+	 }
+	 .item-overlay .item-btn i{
+	 	display:flex;
+	 	justify-content:center;
+	 	align-items:center;
+	 	text-align:center;
+	 	border-radius:50%;
+	 	width:25px;
+	 	height:25px;
+	 	margin:4px 5px;
+	 	border:1px solid rgba(255,255,255,0.8);
+	 	transition:0.3s ease-in-out;
+	 }
+	 .item-overlay .item-btn p{
+	 	display:flex;
+	 	justify-content:center;
+	 	align-items:center;
+	 	text-align:center;
+	 	font-weight:500;
+	 	flex-grow:1;
+	 	transition:0.3s ease-in-out;
+	 }
+	 .item-btn:hover {
+	 	background:rgba(255,255,255,0.9);
+	 	border:1px solid var(--color-deep);
+	 }
+	 .item-btn:hover p{
+	 	color:var(--color-deep);
+	 }
+	 .item-btn:hover i{
+	 	background:var(--color-deep);
+	 	border:1px solid var(--color-deep);
+	 }
+	 
+	 /* Category Section End */
+	 /* ===== Menu Toggle Button ===== */
+	 
+	 #menuToggle:hover {
+	 background: var(--color-light);
+	 transform: translateX(4px);
+	 }
+	 
+	 /* ===== Overlay ===== */
+	 #overlay {
+	 position: fixed;
+	 top: 0;
+	 left: 0;
+	 width: 100%;
+	 height: 100%;
+	 background: rgba(0, 0, 0, 0.4);
+	 z-index: 90;
+	 opacity: 0;
+	 visibility: hidden;
+	 transition: opacity 0.3s ease;
+	 }
+	 
+	 #overlay.active {
+	 opacity: 1;
+	 visibility: visible;
+	 }
+	 
+	 /* ===== Side Menu ===== */
+	 #sideMenu {
+	 position: fixed;
+	 top: 0;
+	 right: 0;
+	 width: 280px;
+	 height: 100vh;
+	 /*background: rgba(30,10,80,1);*/
+	 /*background:var(--color-deep);*/
+	 background:rgba(0,5,40,1);
+	 color: white;
+	 z-index: 100;
+	 transform: translateX(100%);
+	 transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	 padding: 10px 0px;
+	 display: flex;
+	 flex-direction: column;
+	 box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+	 }
+	 
+	 #sideMenu.active {
+	 transform: translateX(0);
+	 }
+	 
+	 /* ===== Navigation Items ===== */
+	 .menu-items {
+	 list-style: none;
+	 padding: 0;
+	 margin:0;
+	 flex-grow: 1;
+	 }
+	 
+	 .menu-items li {
+	 margin: 2px 0;
+	 padding:0;
+	 position: relative;
+	 overflow: hidden;
+	 }
+	 
+	 .menu-items li a {
+	 display: flex;
+	 align-items: center;
+	 text-decoration: none;
+	 color: white;
+	 font-weight:700;
+	 font-size: 15px;
+	 border-radius:10px;
+	 padding: 12px 40px;
+	 transition: all 0.3s ease;
+	 position: relative;
+	 }
+	 
+	 .menu-items .authSign a{
+	 background: var(--color-light);
+	 opacity:.9;
+	 border-radius:0px;
+	 }	
+	 
+	 .menu-items li a::after {
+	 content: '';
+	 position: absolute;
+	 left: -2px;
+	 top: 50%;
+	 transform: translateY(-50%);
+	 height: 60%;
+	 width: 2px;
+	 background: white;
+	 opacity: 0;
+	 transition: all 0.3s ease;
+	 }
+	 
+	 .menu-items li a .menu-cart-label {
+	 position: absolute;
+	 left: 60%;
+	 top: 26%;
+	 width:25px;
+	 height:25px;
+	 display:flex;
+	 align-items:center;
+	 justify-content:center;
+	 font-weight:800;
+	 border-radius:100%;
+	 font-size:14px;
+	 color:black;
+	 background: rgba(250,250,250,0.9);
+	 text-align:center;
+	 transition: all 0.3s ease;
+	 }
+	 
+	 .menu-items li a:hover {
+	 background: rgba(0,0,0,0.5);
+	 transform: translateX(8px);
+	 }
+	 
+	 .menu-items li a:hover::after {
+	 opacity: 1;
+	 left: 8px;
+	 }
+	 .menu-items li a i {
+	 width: 28px;
+	 font-size: 16px;
+	 margin-right: 15px;
+	 }
+	 
+	 /* ===== Social Icons ===== */
+	 .social-container {
+	 display: flex;
+	 justify-content: center;
+	 gap: 15px;
+	 margin: 10px 0;
+	 }
+	 
+	 .social-icon {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 width: 40px;
+	 height: 40px;
+	 border-radius: 50%;
+	 background: rgba(255,255,255,0.1);
+	 color: white;
+	 font-size: 18px;
+	 transition: all 0.3s ease;
+	 text-decoration: none;
+	 }
+	 
+	 .social-icon:hover {
+	 background: var(--color-light);
+	 transform: translateY(-2px);
+	 }
+	 
+	 /* ===== Terms Link ===== */
+	 .terms {
+	 text-align: center;
+	 font-size: 12px;
+	 color: rgba(255,255,255,0.7);
+	 text-decoration: none;
+	 transition: color 0.3s ease;
+	 }
+	 
+	 .terms:hover {
+	 color: white;
+	 }
+	 
+	 /* Close Button */
+	 .close-btn {
+	 position: absolute;
+	 top: 20px;
+	 left: 20px;
+	 font-size: 45px;
+	 color: white;
+	 cursor: pointer;
+	 background:black;
+	 width:50px;
+	 height:50px;
+	 display:inline-flex;
+	 align-items:center;
+	 justify-content:center;
+	 border-radius:50%;
+	 transition: transform 0.3s ease;
+	 }
+	 
+	 .close-btn:hover {
+	 transform: rotate(90deg);
+	 }
+	 
+	 </style>
+	 </head>
+	 <body>
+	 <main>
+	 <!-- Navigation Starts -->
+	 <nav class="top-nav" >
+	 <div class="logo" >
+	 <img class="nav-logo"  src="./images/logo.jpg" >
+	 </div>
+	 <div class="brand flex-grow" >
+	 <h1 class="brand-name" >JC CONNECT</h1>
+	 <p>HOME OF VARIETY</p>
+	 </div>
+	 <div class="nav-icon" >
+	 <i class="fa fa-cart-shopping" ></i>
+	 <div class="nav-icon-label" >
+	 <p>2</p>
+	 </div>
+	 </div>
+	 <div class="nav-icon" id="menuToggle" >
+	 <i class="fa fa-bars" ></i>
+	 </div>
+	 </nav>
+	 <!-- Navigation Menu -->
+	 <div id="overlay">
+	 <span class="close-btn">&times;</span>
+	 </div>
+	 
+	 <nav id="sideMenu">
+	 <ul class="menu-items">
+	 <li class="authSign" ><a href="#"><i class="fas fa-sign-in-alt"></i>Sign In / Sign up</a></li>
+	 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+	 <li><a href="#"><i class="fas fa-tags"></i>Category</a></li>
+	 <li><a href="#"><i class="fas fa-shopping-cart"></i>Cart <span class="menu-cart-label" ><p>2</p></span></a></li>
+	 <li><a href="#"><i class="fas fa-question-circle"></i>FAQs</a></li>
+	 <li><a href="#"><i class="fas fa-store"></i>Shop</a></li>
+	 <li><a href="#"><i class="fas fa-blog"></i>Blog</a></li>
+	 <li><a href="#"><i class="fas fa-envelope"></i>Contact</a></li>
+	 <li><a href="#"><i class="fas fa-info-circle"></i>About</a></li>
+	 </ul>
+	 
+	 <div class="social-container">
+	 <a href="#" class="social-icon">
+	 <i class="fab fa-facebook-f"></i>
+	 </a>
+	 <a href="#" class="social-icon">
+	 <i class="fab fa-twitter"></i>
+	 </a>
+	 <a href="#" class="social-icon">
+	 <i class="fab fa-instagram"></i>
+	 </a>
+	 </div>
+	 <a href="#" class="terms">Terms & Privacy Policy</a>
+	 </nav>
+	 <!-- Nav Menu --Ends -->
+	 <!-- Category Section -->
+	 <div class="categories" >
+	 <div class="cat-head" >
+	 <div></div>
+	 <p>Categories</p>
+	 <div></div>
+	 </div>
+	 <h2 class="cat-head-text" ><span>JC Connect's</span> Collections</h2>
+	 <div class="cat-group" >
+	 <div class="group-item" >
+	 <img src="./images/electronics.jpg" >
+	 <div class="absolute item-overlay electronic" >
+	 <div class="item-text" >Electronic Items</div>
+	 <div class="item-btn" >
+	 <i class="fa fa-angle-right text-center text-white" ></i>
+	 <p class="text-center text-white" >View collection</p>
+	 </div>
+	 </div>
+	 </div>
+	 </div>
+	 <div class="cat-group" >
+	 <div class="group-item" >
+	 <img src="./images/fashion.jpg" >
+	 <div class="absolute item-overlay household" >
+	 <div class="item-text" >Fashion Items</div>
+	 <div class="item-btn" >
+	 <i class="fa fa-angle-right text-center text-white" ></i>
+	 <p class="text-center text-white" >View collection</p>
+	 </div>
+	 </div>
+	 </div>
+	 </div>
+	 <div class="cat-group" >
+	 <div class="group-item" >
+	 <img src="./images/household.jpg" >
+	 <div class="absolute item-overlay" >
+	 <div class="item-text" >Household Items</div>
+	 <div class="item-btn" >
+	 <i class="fa fa-angle-right text-center text-white" ></i>
+	 <p class="text-center text-white" >View collection</p>
+	 </div>
+	 </div>
+	 </div>
+	 </div>
+	 <div class="cat-group" >
+	 <div class="group-item" >
+	 <img src="./images/hero.png" >
+	 <div class="absolute item-overlay o" >
+	 <div class="item-text" >Other Items</div>
+	 <div class="item-btn" >
+	 <i class="fa fa-angle-right text-center text-white" ></i>
+	 <p class="text-center text-white" >View collection</p>
+	 </div>
+	 </div>
+	 </div>
+	 </div>
+	 </div>
+	 <!-- Category Section Ends -->
+	 
+	 </main>
+	 <script type="text/javascript">
+	 const menuToggle = document.getElementById('menuToggle');
+	 const sideMenu = document.getElementById('sideMenu');
+	 const overlay = document.getElementById('overlay');
+	 const closeBtn = document.querySelector('.close-btn');
+	 
+	 // Toggle menu
+	 menuToggle.addEventListener('click', () => {
+	 sideMenu.classList.add('active');
+	 overlay.classList.add('active');
+	 });
+	 
+	 // Close menu
+	 const closeMenu = () => {
+	 sideMenu.classList.remove('active');
+	 overlay.classList.remove('active');
+	 };
+	 
+	 closeBtn.addEventListener('click', closeMenu);
+	 overlay.addEventListener('click', (e) => {
+	 if (e.target === overlay) closeMenu();
+	 });
+	 
+	 // Close on ESC press
+	 document.addEventListener('keydown', (e) => {
+	 if (e.key === 'Escape') closeMenu();
+	 });
+	 </script>
+	 </body>
+	 </html>

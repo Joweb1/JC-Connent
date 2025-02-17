@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-Commerce Shop</title>
+  <link rel="stylesheet" href="./fontawesome/css/all.css">
+  <!-- <link rel="stylesheet" href="./tailwind.min.css">-->
+  <script src="./tailwind.global.js"></script>
+  <style>
+  	@import url('./lato/lato.css');
+  	@import url('./Westport Rounded Book/Westport Rounded Book.css');
+  	*{
+  	font-family:"Westport Rounded Book","Lato", sans-serif;
+  	/*color:black;*/
+  	padding:0;
+  	margin:0;
+  	}
+  	:root{
+  	--color-deep:#00004E;
+  	--color-light:rgba(200,200,250,1);
+  	--load-background: linear-gradient(
+  	to right,
+  	rgba(230,230,230,1) 0%,
+  	rgba(230,230,230,1) 45%,
+  	#ffffff 50%,
+  	rgba(230,230,230,1) 55%,
+  	rgba(230,230,230,1) 100%
+  	);
+  	--load-background-size: 200% 100%;
+  	--load-animation: gradient-move 1.5s linear infinite;
+  	}
+  	body {
+  	font-family: Arial, sans-serif;
+  	background: #f8f9fa;
+  	margin: 0;
+  	}
+  	main{
+  	padding-top:100px;
+  	}
+  	/* Navigation Style */
+  	.top-nav {
+  	position:fixed;
+  	top:0;
+  	font-family:sans-serif;
+  	background:white;
+  	width:100vw;
+  	display:flex;
+  	padding:10px 12px;
+  	align-items:center;
+  	justify-content:space-between;
+  	border-radius:0px 0px 25px 0px;
+  	box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+  	z-index:3;
+  	}
+  	.top-nav div{
+  	margin:3px 1vw;
+  	}
+  	.top-nav .nav-icon {
+  	width:45px;
+  	height:45px;
+  	background:var(--color-deep);
+  	display:flex;
+  	align-items:center;
+  	justify-content:center;
+  	border-radius:50px;
+  	}
+  	.top-nav .nav-icon i{
+  	font-size:20px;
+  	color:white;
+  	text-align:center;
+  	display:block;
+  	}
+  	.top-nav .logo .nav-logo {
+  	width:60px;
+  	border-radius:50px;
+  	}
+  	.top-nav .brand {
+  	margin:3px 3vw !important;
+  	}
+  	.top-nav .brand .brand-name {
+  	font-size:20px;
+  	font-weight:800;
+  	font-family:sans-serif;
+  	}
+  	.top-nav .brand p{
+  	font-size:11px;
+  	font-weight:400;
+  	}
+  	/* Navigation Ends */
+  	
+    .container-t {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+    .container-t h1 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      font-weight:800;
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .filters.search-s{
+    	justify-content: end;
+    }
+    .filters input,
+    .filters select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      outline:none;
+    }
+    .filters #search{
+    	width:100%;
+    }
+    .search-btn {
+    background:var(--color-deep);
+    color:white;
+    padding:7px 20px;
+    border-radius:5px;
+    margin:4px 0px;
+    margin-top:-50px;
+    align-self:end;
+    transition:0.5s;
+    }
+    .search-btn:hover{
+    background:var(--color-light);
+    color:var(--color-deep);
+    }
+    .search-btn:active{
+    background:var(--color-deep);
+    color:white;
+    }
+    .filters select{
+    	font-size:12px;
+    }
+    /* Dropdown Styles */
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    }
+    
+    .dropdown-btn {
+    font-size:12px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    }
+    
+    .dropdown-btn:hover {
+    background: #f8f9fa;
+    }
+    
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 15px;
+    z-index: 2;
+    top: 110%;
+    left: 0;
+    height:300px;
+    overflow:auto;
+    font-size:13px;
+    }
+    
+    .dropdown-content.show {
+    display: block;
+    }
+    
+    .filter-section {
+    margin-bottom: 15px;
+    }
+    
+    .filter-section h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #666;
+    }
+    
+    .dropdown-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    }
+    
+    .dropdown-label:hover {
+    background: #f8f9fa;
+    }
+    
+    .custom-radio {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    }
+    
+    .custom-radio::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--color-deep);
+    border-radius: 50%;
+    display: none;
+    }
+    
+    input[type="radio"]:checked + .custom-radio::after {
+    display: block;
+    }
+    
+    input[type="radio"] {
+    display: none;
+    }
+    
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Two columns */
+      gap: 10px;
+      max-width: 800px;
+      margin: auto -10px;
+    }
+    .product-card {
+    	display:flex;
+    	flex-direction:column;
+      background: white;
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      animation: showed 0.2s linear;
+      position: relative; /* For discount badge positioning */
+    }
+    @keyframes showed{
+    	from{opacity:0;}
+    }
+    .product-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border-radius:10px;
+    }
+    .back-rating {
+    color:silver;
+    margin: 5px 0;
+    font-size:13px;
+    /*text-align:center;*/
+    
+    }
+    .rating {
+      color: rgba(250,180,10,1);
+      margin: 5px 0;
+      font-size:13px;
+      margin-top:-25px;
+      text-align:left;
+    }
+    .price-section {
+    	display:flex;
+    	align-items:end;
+    	justify-content:space-between;
+    	flex-wrap:wrap;
+    }
+    .price {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 5px 0;
+      text-decoration:line-through;
+    }
+    .add-to-cart {
+      /*background: rgba(25, 42, 86, 1);*/
+      background:var(--color-deep);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+      border: none;
+    }
+    
+    .in-cart {
+    	background: #e67e22 !important;
+    }
+    /* Discount badge in the top-left corner */
+    .discount-badge {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      background: #e74c3c;
+      color: white;
+      padding: 5px;
+      border-radius: 0px 10px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    /* Discount label showing the discounted price */
+    .discount-label {
+      background: rgba(80,100,180,.1);
+      color: black;
+      padding: 5px 8px;
+      border-radius: 0px 15px 0px 0px;
+      display: inline-block;
+      margin: 5px -5px;
+      margin-right:5px;
+      font-size: 16px;
+      font-weight:800;
+      font-family:"Lato", sans-serif;
+      letter-spacing:0.5px;
+      flex-grow:1;
+    }
+    
+    /* Loading Products */
+    
+    .product-card-load {
+    display:flex;
+    flex-direction:column;
+    background: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    opacity:1;
+    animation: opacity-move 1s linear infinite;
+    position: relative; /* For discount badge positioning */
+    }
+    .product-card-load .img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius:10px;
+    background: var(--load-background);
+    background-size:var(--load-background-size);
+    animation:var(--load-animation);
+    }
+    .product-card-load .back-rating {
+    color:rgba(220,220,220,1);
+    margin: 5px 0;
+    font-size:13px;
+    animation: opacity-move 1s linear infinite;
+    }
+    
+    .product-card-load .price-section {
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    }
+    .product-card-load .price {
+    font-size: 14px;
+    height:35px;
+    width:35px;
+    font-weight: bold;
+    margin: 5px 0;
+    text-decoration:line-through;
+    }
+    .product-card-load .add-to-cart {
+    background: var(--load-background);
+    background-size:var(--load-background-size);
+    animation:var(--load-animation);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    /*height:35px;*/
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+    }
+    /* Discount badge in the top-left corner */
+    .product-card-load .discount-badge {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width:30px;
+    height:30px;
+    background: var(--load-background);
+    background-size:var(--load-background-size);
+    animation:var(--load-animation);
+    color: white;
+    padding: 5px;
+    border-radius: 0px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    
+    }
+    /* Discount label showing the discounted price */
+    .product-card-load .discount-label {
+    background: var(--load-background);
+    background-size:var(--load-background-size);
+    animation:var(--load-animation);
+    color: black;
+    padding: 5px 8px;
+    border-radius: 0px 15px 0px 0px;
+    display: inline-block;
+    margin: 5px -5px;
+    margin-right:5px;
+    font-size: 16px;
+    height:35px;
+    font-weight:800;
+    font-family:"Lato", sans-serif;
+    letter-spacing:0.5px;
+    flex-grow:1;
+    }
+    /* end */
+    .pagination {
+    	margin-top: 20px;
+    	display:flex;
+    	align-items:center;
+    	justify-content:center;
+    }
+    .pagination button {
+      display:flex;
+      width:50px;
+      height:50px;
+      align-items:center;
+      justify-content:center;
+      background: var(--color-deep);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 20px 15px;
+    }
+    
+    .pagination button:hover {
+    background: #2c48c4;
+    }
+
+    /* Load Animation */
+    @keyframes gradient-move {
+    0% {
+    background-position: 100% 0;
+    }
+    100% {
+    background-position: -100% 0;
+    }
+    }
+    @keyframes opacity-move {
+    50%{opacity:.3;}
+    }
+  </style>
+</head>
+<body>
+<main>
+<!-- Navigation Starts -->
+		<nav class="top-nav" >
+			<div class="logo" >
+				<img class="nav-logo"  src="./images/logo.jpg" >
+			</div>
+			<div class="brand flex-grow" >
+				<h1 class="brand-name" >JC CONNECT</h1>
+				<p>HOME OF VARIETY</p>
+			</div>
+			<div class="nav-icon" >
+				<i class="fa fa-cart-shopping" ></i>
+			</div>
+			<div class="nav-icon" >
+				<i class="fa fa-bars" ></i>
+			</div>
+		</nav>
+	<!-- Navigation Stops -->
+  <div class="container-t">
+    <h1>Shop</h1>
+    <div class="filters search-s" >
+    <!-- Search by name or tag -->
+    <input type="text" id="search" placeholder="Search products..." />
+    <button class="search-btn" id="searchBtn" onclick="filterProducts()"><i class="fa fa-search" ></i></button>
+    </div>
+    <div class="filters">
+      <!-- Filter Dropdown -->
+      <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('filter')">
+      <i class="fas fa-filter"></i> Filter
+      </button>
+      <div class="dropdown-content" id="filterDropdown">
+      <div class="filter-section">
+      <h4>Brand</h4>
+      <div id="brandFilters"></div>
+      </div>
+      <div class="filter-section">
+      <h4>Category</h4>
+      <label class="dropdown-label">
+      <input type="radio" name="category" value="All" checked onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      All Categories
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="category" value="Electronics" onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      Electronics
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="category" value="Fashion" onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      Fashion
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="category" value="Home" onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      Home
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="category" value="Books" onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      Books
+      </label>
+      </div>
+      <div class="filter-section">
+      <h4>Rating</h4>
+      <label class="dropdown-label">
+      <input type="radio" name="rating" value="All" checked onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      All Ratings
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="rating" value="5" onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      5 Stars
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="rating" value="4" onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      4 Stars & Up
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="rating" value="3" onchange="filterProducts()">
+      <span class="custom-radio"></span>
+      3 Stars & Up
+      </label>
+      </div>
+      </div>
+      </div>
+      
+      <!-- Sort Dropdown -->
+      <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('sort')">
+      <i class="fas fa-sort"></i> Sort by
+      </button>
+      <div class="dropdown-content" id="sortDropdown">
+      <label class="dropdown-label">
+      <input type="radio" name="sort" value="az" onchange="sortAndDisplay()">
+      <span class="custom-radio"></span>
+      A-Z
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="sort" value="za" onchange="sortAndDisplay()">
+      <span class="custom-radio"></span>
+      Z-A
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="sort" value="price_low_high" onchange="sortAndDisplay()">
+      <span class="custom-radio"></span>
+      Price: Low to High
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="sort" value="price_high_low" onchange="sortAndDisplay()">
+      <span class="custom-radio"></span>
+      Price: High to Low
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="sort" value="newest" onchange="sortAndDisplay()">
+      <span class="custom-radio"></span>
+      Newest
+      </label>
+      <label class="dropdown-label">
+      <input type="radio" name="sort" value="oldest" onchange="sortAndDisplay()">
+      <span class="custom-radio"></span>
+      Oldest
+      </label>
+      </div>
+      </div>
+      
+      <!-- Change products per page -->
+      <select id="productsPerPage" onchange="changeProductsPerPage()">
+        <option value="6">6 Products</option>
+        <option value="12">12 Products</option>
+        <option value="20">20 Products</option>
+      </select>
+    </div>
+
+    <div class="products" id="productList"></div>
+
+    <div class="pagination">
+      <button onclick="prevPage()"><i class="fas fa-chevron-left"></i></button>
+      <button onclick="nextPage()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</main>
+  <script>
+    // --- Sample Products Array (31 products) ---
+    const products = [
+      { name: "Laptop", category: "Electronics", price: 800000000, rating: 5, img: "./images/household.jpg", tags: ["computer", "tech"], date: "2023-01-10", brand: "Brand", discount: 10 },
+      { name: "Smartphone", category: "Electronics", price: 500, rating: 4.5, img: "./images/household.jpg", tags: ["mobile", "tech"], date: "2023-02-05", brand: "Brand", discount: 5 },
+      { name: "Headphones", category: "Electronics", price: 100, rating: 5, img: "./images/household.jpg", tags: ["audio", "music"], date: "2023-03-15", brand: "Brand", discount: 15 },
+      { name: "T-shirt", category: "Fashion", price: 20, rating: 3.5, img: "./images/household.jpg", tags: ["clothing", "casual"], date: "2023-01-20", brand: "Brand", discount: 20 },
+      { name: "Jeans", category: "Fashion", price: 40, rating: 4.5, img: "https://via.placeholder.com/100", tags: ["denim", "casual"], date: "2023-02-25", brand: "BrandE", discount: 10 },
+      { name: "Sneakers", category: "Fashion", price: 60, rating: 5, img: "https://via.placeholder.com/100", tags: ["shoes", "sports"], date: "2023-03-05", brand: "BrandE", discount: 5 },
+      { name: "Book A", category: "Books", price: 15, rating: 5, img: "https://via.placeholder.com/100", tags: ["reading", "education"], date: "2023-01-01", brand: "BrandE", discount: 0 },
+      { name: "Book B", category: "Books", price: 25, rating: 4.5, img: "https://via.placeholder.com/100", tags: ["novel", "fiction"], date: "2023-02-10", brand: "Brand", discount: 5 },
+      { name: "Book C", category: "Books", price: 35, rating: 5, img: "https://via.placeholder.com/100", tags: ["non-fiction", "history"], date: "2023-03-20", brand: "BrandK", discount: 10 },
+      { name: "Watch", category: "Fashion", price: 100, rating: 5, img: "https://via.placeholder.com/100", tags: ["accessory", "luxury"], date: "2023-02-28", brand: "Brand", discount: 15 },
+      { name: "Monitor", category: "Electronics", price: 200, rating: 4, img: "https://via.placeholder.com/100", tags: ["display", "computer"], date: "2023-03-25", brand: "BrandK", discount: 20 },
+      // 20 more products:
+      { name: "Tablet", category: "Electronics", price: 300, rating: 4, img: "./images/household.jpg", tags: ["mobile", "tech"], date: "2023-04-01", brand: "BrandK", discount: 10 },
+      { name: "Camera", category: "Electronics", price: 450, rating: 5, img: "https://via.placeholder.com/100", tags: ["photography", "tech"], date: "2023-04-05", brand: "BrandK", discount: 25 },
+      { name: "Smartwatch", category: "Electronics", price: 150, rating: 3, img: "https://via.placeholder.com/100", tags: ["wearable", "tech"], date: "2023-04-10", brand: "BrandE", discount: 10 },
+      { name: "Dress", category: "Fashion", price: 80, rating: 4, img: "https://via.placeholder.com/100", tags: ["clothing", "elegant"], date: "2023-04-15", brand: "Brand", discount: 20 },
+      { name: "Jacket", category: "Fashion", price: 120, rating: 5, img: "https://via.placeholder.com/100", tags: ["outerwear", "winter"], date: "2023-04-20", brand: "BrandE", discount: 30 },
+      { name: "Sunglasses", category: "Fashion", price: 50, rating: 3, img: "https://via.placeholder.com/100", tags: ["accessory", "summer"], date: "2023-04-25", brand: "BrandK", discount: 5 },
+      { name: "Backpack", category: "Fashion", price: 70, rating: 4, img: "https://via.placeholder.com/100", tags: ["bag", "travel"], date: "2023-04-30", brand: "BrandK", discount: 15 },
+      { name: "Coffee Maker", category: "Home", price: 90, rating: 4, img: "https://via.placeholder.com/100", tags: ["appliance", "kitchen"], date: "2023-05-01", brand: "BrandE", discount: 10 },
+      { name: "Blender", category: "Home", price: 60, rating: 3, img: "https://via.placeholder.com/100", tags: ["appliance", "kitchen"], date: "2023-05-05", brand: "Brand", discount: 20 },
+      { name: "Microwave", category: "Home", price: 110, rating: 4, img: "https://via.placeholder.com/100", tags: ["appliance", "kitchen"], date: "2023-05-10", brand: "BrandE", discount: 15 },
+      { name: "Sofa", category: "Home", price: 600, rating: 5, img: "https://via.placeholder.com/100", tags: ["furniture", "living room"], date: "2023-05-15", brand: "BrandK", discount: 25 },
+      { name: "Dining Table", category: "Home", price: 400, rating: 4, img: "https://via.placeholder.com/100", tags: ["furniture", "dining"], date: "2023-05-20", brand: "Brand", discount: 20 },
+      { name: "Chair", category: "Home", price: 80, rating: 3, img: "https://via.placeholder.com/100", tags: ["furniture", "dining"], date: "2023-05-25", brand: "BrandK", discount: 10 },
+      { name: "Novel", category: "Books", price: 18, rating: 4, img: "https://via.placeholder.com/100", tags: ["reading", "fiction"], date: "2023-06-01", brand: "BrandE", discount: 0 },
+      { name: "Biography", category: "Books", price: 22, rating: 5, img: "https://via.placeholder.com/100", tags: ["reading", "non-fiction"], date: "2023-06-05", brand: "BrandK", discount: 5 },
+      { name: "Cookbook", category: "Books", price: 30, rating: 4, img: "https://via.placeholder.com/100", tags: ["cooking", "recipes"], date: "2023-06-10", brand: "BrandE", discount: 10 },
+      { name: "Tablet Cover", category: "Electronics", price: 25, rating: 3, img: "https://via.placeholder.com/100", tags: ["accessory", "tech"], date: "2023-06-15", brand: "Brand", discount: 5 },
+      { name: "Wireless Mouse", category: "Electronics", price: 30, rating: 4, img: "https://via.placeholder.com/100", tags: ["computer", "accessory"], date: "2023-06-20", brand: "BrandK", discount: 10 },
+      { name: "Keyboard", category: "Electronics", price: 45, rating: 5, img: "https://via.placeholder.com/100", tags: ["computer", "accessory"], date: "2023-06-25", brand: "BrandK", discount: 15 },
+      { name: "Running Shoes", category: "Fashion", price: 75, rating: 4, img: "https://via.placeholder.com/100", tags: ["sports", "shoes"], date: "2023-06-30", brand: "BrandE", discount: 20 },
+      { name: "Sports Watch", category: "Electronics", price: 130, rating: 4, img: "https://via.placeholder.com/100", tags: ["sports", "tech"], date: "2023-07-01", brand: "Brand", discount: 10 }
+    ];
+
+    // --- Global variables for filtering and pagination ---
+    let filteredProducts = [...products];
+    let currentPage = 1;
+    let productsPerPage = 6; // default value
+
+    // --- Display products on the current page from filteredProducts ---
+   /* function displayProducts() {
+    
+      const productList = document.getElementById("productList");
+      productList.innerHTML = "";
+      const start = (currentPage - 1) * productsPerPage;
+      const end = start + productsPerPage;
+      const displayedProducts = filteredProducts.slice(start, end);
+      displayedProducts.forEach((product) => {
+        // Calculate the discounted price
+        const discountPrice = product.price - (product.price * product.discount / 100);
+        productList.innerHTML += `
+        <div class="product-card-load">
+        <div class="discount-badge"></div>
+        <div class="img"></div>
+        <h3></h3>
+        <div class="price-section">
+        <p class="discount-label"></p>
+        <p class="price"></p>
+        </div>
+        <p class="back-rating">${"<i class='fa fa-star'></i>".repeat(5)}</p>
+        <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
+        </div>
+        `;
+        });
+        productList.innerHTML += `
+          <div class="product-card">
+            <div class="discount-badge">-${product.discount}%</div>
+            <img src="${product.img}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <div class="price-section">
+            <p class="discount-label">$${discountPrice.toFixed(2)}</p>
+            <p class="price">$${product.price}</p>
+            </div>
+            <p class="back-rating">${"<i class='fa fa-star'></i>".repeat(5)}</p>
+            <p class="rating">${"<i class='fa fa-star'></i>".repeat(product.rating)}${product.rating % 1 === 0.5 ? "<i class='fa fa-solid fa-star-half'></i>" : ""}</p>
+            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to cart</button>
+          </div>
+        `;
+      });
+    }*/
+    
+    function displayProducts() {
+    const productList = document.getElementById("productList");
+    productList.innerHTML = ""; // Clear existing content
+    
+    const start = (currentPage - 1) * productsPerPage;
+    const end = start + productsPerPage;
+    const displayedProducts = filteredProducts.slice(start, end);
+    
+    // Create loading skeletons
+    let loadingHTML = '';
+    displayedProducts.forEach(() => {
+    loadingHTML += `
+    <div class="product-card-load">
+    <div class="discount-badge"></div>
+    <div class="img"></div>
+    <h3></h3>
+    <div class="price-section">
+    <p class="discount-label"></p>
+    <p class="price"></p>
+    </div>
+    <p class="back-rating">${"<i class='fa fa-star'></i>".repeat(5)}</p>
+    <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
+    </div>
+    `;
+    });
+    productList.innerHTML = loadingHTML;
+    
+    // After 5 seconds, replace with actual products
+    setTimeout(() => {
+    productList.innerHTML = ""; // Clear loading skeletons
+    let productsHTML = '';
+    
+    displayedProducts.forEach((product) => {
+    const discountPrice = product.price - (product.price * product.discount / 100);
+    productsHTML += `
+    <div class="product-card">
+    <div class="discount-badge">-${product.discount}%</div>
+    <img src="${product.img}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <div class="price-section">
+    <p class="discount-label">
+    ₦${discountPrice.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+    })}
+    </p>
+    <p class="price">₦${product.price.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+    })}</p>
+    </div>
+    <p class="back-rating">${"<i class='fa fa-star'></i>".repeat(5)}</p>
+    <p class="rating">${"<i class='fa fa-star'></i>".repeat(Math.floor(product.rating))}${product.rating % 1 >= 0.5 ? "<i class='fa fa-star-half'></i>" : ""}
+    </p>
+    <button class="add-to-cart" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to cart</button>
+    </div>
+    `;
+    });
+    
+    productList.innerHTML = productsHTML;
+    }, 5000);
+    }
+    
+    function getChecked(itemCheck) {
+    // Loop through each radio button
+    for (const radio of itemCheck) {
+    // Check if the current radio is checked
+    if (radio.checked) {
+    // Return its value
+    return radio.value;
+    }
+    }
+    
+    // Return a default value (optional, if none is checked)
+    return 'All'; // Since 'All' is initially checked
+    }
+    
+    // Add to cart 
+    
+    function addToCart(button) {
+    	let count = parseInt(button.dataset.count || 0) + 1;
+    	button.dataset.count = count;
+    	button.innerHTML = `<i class="fas fa-shopping-cart cart-icon"></i> ${count} ${count === 1 ? 'item' : 'items'} in Cart`;
+    	button.classList.add('in-cart');
+    }
+
+    // --- Filter products based on search, category, and rating ---
+    function filterProducts() {
+      const searchQuery = document.getElementById("search").value.toLowerCase();
+      const checkBrand = document.getElementsByName("brand");
+      const checkCategory = document.getElementsByName("category");
+      const checkRating = document.getElementsByName("rating");
+      const selectedBrand = getChecked(checkBrand);
+      const selectedCategory = getChecked(checkCategory);
+      const selectedRating = getChecked(checkRating);
+      
+      filteredProducts = products.filter((product) => {
+      const nameMatch = product.name.toLowerCase().includes(searchQuery);
+      const tagMatch = product.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+      const searchMatch = nameMatch || tagMatch;
+      const brandMatch = selectedBrand === 'All' ? true : product.brand === selectedBrand;
+      const categoryMatch = selectedCategory === 'All' ? true : product.category === selectedCategory;
+      const ratingMatch = selectedRating === 'All' ? true : product.rating >= parseInt(selectedRating);
+      
+      return searchMatch && brandMatch && categoryMatch && ratingMatch;
+      });
+      currentPage = 1;
+      sortAndDisplay();
+    }
+
+    // --- Sort filteredProducts and then display ---
+    function sortAndDisplay() {
+      const sortMain = document.getElementsByName("sort");
+      const sortValue = getChecked(sortMain);
+      if (sortValue === "az") {
+        filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sortValue === "za") {
+        filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (sortValue === "price_low_high") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (sortValue === "price_high_low") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      } else if (sortValue === "newest") {
+        filteredProducts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (sortValue === "oldest") {
+        filteredProducts.sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
+      displayProducts();
+    }
+
+    // --- Change products per page ---
+    function changeProductsPerPage() {
+      productsPerPage = parseInt(document.getElementById("productsPerPage").value);
+      currentPage = 1;
+      displayProducts();
+    }
+
+    // --- Pagination: next and previous pages ---
+    function nextPage() {
+      if (currentPage * productsPerPage < filteredProducts.length) {
+        currentPage++;
+        displayProducts();
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        displayProducts();
+      }
+    }
+    
+    function initializeBrandFilters() {
+    const brands = [...new Set(products.map(product => product.brand))];
+    const brandFilters = document.getElementById('brandFilters');
+    brandFilters.innerHTML = `
+    <label class="dropdown-label">
+    <input type="radio" name="brand" value="All" checked onchange="filterProducts()">
+    <span class="custom-radio"></span>
+    All Brands
+    </label>
+    ${brands.map(brand => `
+    <label class="dropdown-label">
+    <input type="radio" name="brand" value="${brand}" onchange="filterProducts()">
+    <span class="custom-radio"></span>
+    ${brand}
+    </label>
+    `).join('')}
+    `;
+    }
+    
+    initializeBrandFilters();
+    
+    // Toggle dropdown visibility
+    function toggleDropdown(type) {
+    const dropdown = document.getElementById(`${type}Dropdown`);
+    dropdown.classList.toggle('show');
+    }
+    
+    window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-btn')) {
+    const dropdowns = document.querySelectorAll('.dropdown-content');
+    dropdowns.forEach(dropdown => {
+    if (dropdown.classList.contains('show')) {
+    dropdown.classList.remove('show');
+    }
+    });
+    }
+    }
+
+    // --- Initial display ---
+    displayProducts();
+    
+  </script>
+</body>
+</html>

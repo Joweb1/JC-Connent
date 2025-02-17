@@ -1,0 +1,524 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+   <!-- <link rel="stylesheet" href="./tailwind.min.css">-->
+    <script src="./tailwind.global.js"></script>
+<title>JC Connent</title>
+	<style type="text/css">
+	@import url('./lato/lato.css');
+	@import url('./Westport Rounded Book/Westport Rounded Book.css');
+	*{
+		font-family:"Westport Rounded Book","Lato", sans-serif;
+		/*color:black;*/
+		padding:0;
+		margin:0;
+	}
+	:root{
+		--color-deep:#00004E;
+		--color-light:rgba(104, 128, 255, 1);
+	}
+	main{
+		padding-top:60px;
+	}
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* ======== CART SUMMARY ======== */
+    .cart-summary {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .cart-header {
+      padding: 1.5rem;
+      background: linear-gradient(170deg, var(--color-deep) 0%, var(--color-deep) 100%);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .cart-items {
+      padding: 1rem;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      width:100%;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .item-details h3 {
+      font-size: 1.1rem;
+      font-weight:700;
+      margin-bottom: 0.2rem;
+    }
+
+    .item-status {
+      color: rgba(10,130,30,1);
+      font-size: 0.7rem;
+      margin-bottom: 0rem;
+    }
+
+    .price-discount {
+      display: flex;
+      flex-wrap:wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0rem;
+    }
+
+    .current-price {
+      font-weight: 700;
+      color: var(--color-deep);
+      font-size:18px;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: #94a3b8;
+      font-size:12px;
+    }
+
+    .discount {
+      background: rgba(250,180,50,0.1);
+      color: orange;
+      padding: 0.25rem 0.2rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      margin-left:10px;
+    }
+
+    .cart-controls {
+      display: flex;
+      gap: 35vw;
+      align-items: center;
+      justify-content:space-between;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      background: #f8fafc;
+      border-radius: 6px;
+      /*overflow: hidden;*/
+    }
+
+    .quantity-control button {
+      padding: 0.5rem 0.75rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #64748b;
+    }
+
+    .quantity-control button:hover {
+      background: #e2e8f0;
+    }
+
+    .quantity-control span {
+      width: 40px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .remove-btn {
+      color: white;
+      background: rgba(220,40,40,1);
+      font-size:14px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding:10px 15px;
+      gap: 0.5rem;
+      border-radius:5px;
+      transition: opacity 0.2s;
+    }
+
+    .remove-btn:hover {
+      opacity: 0.5;
+    }
+
+    /* ======== CART FOOTER ======== */
+    .cart-footer {
+      padding: 1.5rem;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .cart-subtotal {
+      text-align: right;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-subtotal span {
+      font-weight: 700;
+      color: black;
+      font-size:1.25rem;
+    }
+
+    .checkout-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content:space-between;
+    }
+
+    .checkout-btn, .call-btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content:center;
+      gap: 0.5rem;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .checkout-btn {
+      background: linear-gradient(135deg, var(--color-deep) 0%, var(--color-deep) 100%);
+      color: white;
+      flex-grow:1;
+    }
+
+    .call-btn {
+      background:transparent;
+      color: var(--color-deep);
+      border:1px solid var(--color-deep);
+    }
+
+    .checkout-btn:hover, .call-btn:hover {
+      transform: translateY(-10px);
+      opacity: 0.8;
+    }
+
+    /* ======== WISHLIST ======== */
+    .wishlist-section {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom:20px;
+    }
+
+    .wishlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .wishlist-items {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+    }
+    
+    .related-items {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    }
+
+    .wishlist-item {
+      flex: 0 0 200px;
+      background: #f8fafc;
+      border-radius: 8px;
+      font-size:16px;
+      font-weight:700;
+      transition: transform 0.2s;
+    }
+	.wishlist-item p{
+		padding:0px 15px;
+	}
+    .wishlist-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .wishlist-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+	.add-to-cart {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--color-deep);
+	color: white;
+	border: none;
+	padding: 10px;
+	margin-top:10px;
+	width: 100%;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight:600;
+	transition: background 0.3s;
+	}
+	
+	.add-to-cart:hover {
+	background: #219150;
+	}
+	
+	.cart-icon {
+	margin-right: 8px;
+	}
+	
+	.in-cart {
+	background: #e67e22 !important;
+	}
+	
+    .wishlist-price {
+    	font-size:18px;
+      	font-weight: 600;
+      	margin-top: 0.2rem;
+    }
+
+    /* ======== LOADING ANIMATION ======== */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading {
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 768px) {
+      .cart-item {
+        grid-template-columns: 40% 1fr&;
+      }
+
+      .item-image {
+        width: 100%;
+      }
+
+      .checkout-actions {
+        flex-direction: row;
+      }
+
+      .wishlist-item {
+        flex: 0 0 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="container">
+    <!-- Cart Summary -->
+    <div class="cart-summary">
+      <div class="cart-header">
+        <h2>Your Shopping Cart</h2>
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+
+      <div class="cart-items">
+        <!-- Cart Items Here -->
+      </div>
+
+      <div class="cart-footer">
+        <p class="cart-subtotal">Subtotal: <span>N 0</span></p>
+        <div class="checkout-actions">
+          <button class="call-btn">
+            <i class="fas fa-phone"></i>
+          </button>
+          <button class="checkout-btn" onclick="handleCheckout()">
+            <i class="fas fa-lock"></i> Checkout (N 0)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wishlist Section -->
+    <div class="wishlist-section">
+      <div class="wishlist-header">
+        <h3>Your Wishlist (4)</h3>
+        <a href="./orderSummary.html" class="view-more">View All</a>
+      </div>
+      <div class="wishlist-items">
+        <!-- Wishlist Items Here -->
+      </div>
+    </div>
+    <div class="wishlist-section">
+    <div class="wishlist-header">
+    <h3>You Might Also Like</h3>
+    </div>
+    <div class="related-items">
+    	<!-- Wishlist Items Here -->
+    </div>
+    </div>
+  </div>
+</main>
+  <script>
+    // Sample product data
+    const cartProducts = [
+      {
+        id: 1,
+        name: "MG-S20 Wireless Bluetooth Earbuds",
+        price: 114500,
+        originalPrice: 205000,
+        image: "./images/household.jpg",
+        quantity: 1
+      },
+      {
+        id: 2,
+        name: "LIVE PRO+ Wireless Bluetooth Earbud",
+        price: 14999,
+        originalPrice: 46000,
+        image: "./images/fashion.jpg",
+        quantity: 1
+      }
+    ];
+
+    const wishlistProducts = [
+      { name: "Solar Panel Kit", price: 25000, image: "./images/electronics.jpg" },
+      { name: "Power Inverter", price: 18500, image: "./images/electronics.jpg" },
+      { name: "Portable Charger", price: 9999, image: "./images/fashion.jpg" },
+      { name: "Wireless Headphones", price: 12000, image: "./images/fashion.jpg" }
+    ];
+    
+    const relatedProducts = [
+    { name: "Solar Panel Kit", price: 25000, image: "./images/electronics.jpg" },
+    { name: "Power Inverter", price: 18500, image: "./images/electronics.jpg" },
+    { name: "Portable Charger", price: 9999, image: "./images/fashion.jpg" },
+    { name: "Wireless Headphones", price: 12000, image: "./images/fashion.jpg" }
+    ];
+
+    // Cart functionality
+    function renderCart() {
+      const cartItems = document.querySelector('.cart-items');
+      const subtotal = document.querySelector('.cart-subtotal span');
+      let total = 0;
+
+      cartItems.innerHTML = '';
+      cartProducts.forEach(product => {
+        total += product.price * product.quantity;
+        const discount = Math.round((product.originalPrice - product.price) / product.originalPrice * 100);
+        
+        cartItems.innerHTML += `
+          <div class="cart-item" data-id="${product.id}">
+            <div class="item-image">
+              <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="item-details">
+              <h3>${product.name}</h3>
+              <p class="item-status">In Stock <span class="discount">-${discount}%</span></p>
+              <div class="price-discount">
+                <span class="current-price">₦${product.price.toLocaleString()}</span>
+                <span class="original-price">₦${product.originalPrice.toLocaleString()}</span>
+              </div>
+            </div>
+            	<div class="cart-controls">
+            		<div class="quantity-control">
+            			<button onclick="updateQuantity(${product.id}, -1)"><i class="fas fa-minus"></i></button>
+            			<span>${product.quantity}</span>
+            			<button onclick="updateQuantity(${product.id}, 1)"><i class="fas fa-plus"></i></button>
+            		</div>
+            		<button class="remove-btn" onclick="removeItem(${product.id})">
+            			<i class="fas fa-trash"></i>
+            		</button>
+            </div>
+          </div>
+        `;
+      });
+
+      subtotal.textContent = `N ${total.toLocaleString()}`;
+      document.querySelector('.checkout-btn').innerHTML = `
+        <i class="fas fa-lock"></i> Checkout
+      `;
+    }
+
+    function updateQuantity(id, change) {
+      const product = cartProducts.find(p => p.id === id);
+      product.quantity = Math.max(1, product.quantity + change);
+      renderCart();
+    }
+
+    function removeItem(id) {
+      const index = cartProducts.findIndex(p => p.id === id);
+      cartProducts.splice(index, 1);
+      renderCart();
+    }
+
+    // Wishlist functionality
+    function renderWishlist() {
+      const wishlistItems = document.querySelector('.wishlist-items');
+      wishlistItems.innerHTML = wishlistProducts.map(product => `
+        <div class="wishlist-item">
+          <img src="${product.image}" alt="${product.name}">
+          <p>${product.name}</p>
+          <p class="wishlist-price">₦${product.price.toLocaleString()}</p>
+          <button class="add-to-cart" onclick="addToCart(this)">
+          <i class="fa fa-shopping-cart cart-icon"></i> Add to Cart
+          </button>
+        </div>
+      `).join('');
+    }
+    
+    function renderRelated() {
+    const relatedItems = document.querySelector('.related-items');
+    relatedItems.innerHTML = relatedProducts.map(product => `
+    <div class="wishlist-item">
+    <img src="${product.image}" alt="${product.name}">
+    <p>${product.name}</p>
+    <p class="wishlist-price">₦${product.price.toLocaleString()}</p>
+    <button class="add-to-cart" onclick="addToCart(this)">
+    <i class="fa fa-shopping-cart cart-icon"></i> Add to Cart
+    </button>
+    </div>
+    `).join('');
+    }
+
+    // Checkout handling
+    function handleCheckout() {
+      const btn = document.querySelector('.checkout-btn');
+      btn.innerHTML = `<i class="fas fa-spinner loading"></i> Processing...`;
+      btn.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+        btn.innerHTML = `<i class="fas fa-lock"></i> Checkout Complete!`;
+        setTimeout(() => {
+          btn.innerHTML = `<i class="fas fa-lock"></i> Checkout`;
+          btn.disabled = false;
+        }, 2000);
+      }, 3000);
+    }
+
+    // Initial render
+    renderCart();
+    renderWishlist();
+    renderRelated();
+  </script>
+</body>
+</html>

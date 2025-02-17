@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+   <!-- <link rel="stylesheet" href="./tailwind.min.css">-->
+    <script src="./tailwind.global.js"></script>
+<title>JC Connent</title>
+	<style type="text/css">
+	@import url('./lato/lato.css');
+	@import url('./Westport Rounded Book/Westport Rounded Book.css');
+	:root{
+		--color-deep:#00004E;
+		--color-light:rgba(104, 128, 255, 1);
+	}
+	body {
+		font-family:"Westport Rounded Book","Lato", sans-serif;
+		/*color:black;*/
+		padding:0;
+		margin:0;
+	}
+	main{
+		padding-top:60px;
+	}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ======== PRODUCT PAGE CONTAINER ======== */
+    .product-page {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      padding-bottom:20px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ======== IMAGE GALLERY SECTION ======== */
+    .image-gallery {
+      flex: 1 1 50%;
+      min-width: 300px;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .main-image {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .main-image img {
+      width: 80%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .thumbnail-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+    .thumbnails {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 10px;
+      max-width: 300px;
+    }
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      object-fit: cover;
+      border: 2px solid transparent;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .thumbnail.active {
+      border-color: #007bff;
+    }
+
+    /* ======== PRODUCT DETAILS SECTION ======== */
+    .product-details {
+      flex: 1 1 50%;
+      min-width: 300px;
+      padding: 0px 30px;
+      padding-top:10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .product-details h2 {
+      font-size: 1.5rem;
+     /* font-family:"Lato", sans-serif;*/
+      font-weight:800;
+      margin-bottom: 1px;
+    }
+    .price {
+      font-weight:600;
+      margin: 0px 0;
+    }
+    .current-price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family:"Lato", sans-serif;
+      color: var(--color-deep);
+      margin-right: 10px;
+    }
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+      font-weight:600;
+      margin-right: 10px;
+      padding:0px 2px;
+      padding-right:55%;
+    }
+    .discount {
+      color: #e74c3c;
+      font-weight: 600;
+      padding:0px 2px;
+      padding-right:5px;
+    }
+    .rating {
+      margin: 10px 0;
+      color: #f39c12;
+      font-size: 1rem;
+    }
+    .rating span{
+    	font-size:12px;
+    	color:rgba(0,0,0,.6);
+    }
+    .product-description {
+    font-size:14px;
+      margin: 5px 0;
+      color: #555;
+    }
+    
+    /* ======== ACTION BUTTONS ======== */
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .action-buttons button {
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .add-to-cart-btn {
+      background-color: var(--color-deep);
+      color: #fff;
+      transition:0.3s;
+    }
+    .in-cart {
+    background: #e67e22 !important;
+    }
+    .add-to-cart-btn:hover {
+      background-color: #0056b3;
+    }
+    .wishlist-btn,
+    .share-btn{
+    	background:rgba(200,200,200,.3);
+    	transition:0.4s;
+    }
+    .wishlist-btn i,
+    .share-btn i{
+    	display:block;
+      background-color: transparent;
+      color: var(--color-deep);
+      font-size: 1.4rem;
+      transition:0.4s;
+    }
+    .wishlist-btn:hover i,
+    .share-btn:hover i{
+      color: white;
+    }
+    .wishlist-btn:hover,
+    .share-btn:hover{
+    	background:var(--color-deep);
+    }
+    .disclaimer {
+      font-style: italic;
+      color: green;
+      margin-top: 10px;
+    }
+
+    /* ======== REVIEWS SECTION ======== */
+    .reviews-section {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    .reviews-section h3 {
+      margin-bottom: 15px;
+    }
+    .review {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+    .review:last-child {
+      border-bottom: none;
+    }
+    .review .review-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .review .review-rating {
+    	font-size:14px;
+      color: #f39c12;
+      margin-bottom: 5px;
+    }
+    .review .review-text {
+    	font-size:14px;
+     	color: #555;
+    }
+    .extra-review {
+      display: none;
+    }
+    #toggle-reviews {
+      background: none;
+      border: none;
+      color: #007bff;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    #toggle-reviews:hover {
+      text-decoration: underline;
+    }
+    .toggle-reviews {
+    background: var(--color-light);
+    border: none;
+    padding:5px 10px;
+    color: white;
+    border-radius:20px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1rem;
+    float:right;
+    }
+    .toggle-reviews:hover {
+    text-decoration: underline;
+    }
+
+    /* ======== PRODUCT SUGGESTIONS SECTION ======== */
+    .suggestions-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    .suggestions-section h3 {
+      margin-bottom: 15px;
+    }
+    .suggestions-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding-bottom: 10px;
+    }
+    .suggestion {
+      flex: 0 0 auto;
+      width: 200px;
+      text-align: center;
+    }
+    .suggestion img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .suggestion p {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .rating-star {
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: color 0.2s;
+    }
+    
+    .rating-star.active {
+    color: #ffd700;
+    }
+    .review-modal {
+        background: rgba(0,0,0,0.5);
+        transition: opacity 0.3s;
+    }
+
+    /* ======== RESPONSIVE ADJUSTMENTS ======== */
+    @media (max-width: 768px) {
+      .product-page {
+        flex-direction: column;
+      }
+      .image-gallery,
+      .product-details {
+        flex: 1 1 100%;
+      }
+      .main-image img {
+        width: 100%;
+        height:auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <!-- Product Page -->
+  <div class="product-page">
+    <!-- IMAGE GALLERY SECTION -->
+    <div class="image-gallery">
+      <div class="main-image">
+        <img id="displayed-image" src="images/household.jpg" alt="Product Image" />
+      </div>
+      <div class="thumbnail-container">
+        <div class="thumbnails" id="thumbnails">
+          <!-- Replace with actual product images as needed -->
+          <img src="images/household.jpg" alt="Product Image 1" class="thumbnail active" data-large="images/household.jpg" />
+          <img src="images/household.jpg" alt="Product Image 2" class="thumbnail" data-large="images/household.jpg" />
+          <img src="images/household.jpg" alt="Product Image 3" class="thumbnail" data-large="images/household.jpg" />
+          <img src="images/fashion.jpg" alt="Product Image 4" class="thumbnail" data-large="images/fashion.jpg" />
+          <img src="images/household.jpg" alt="Product Image 2" class="thumbnail" data-large="images/household.jpg" />
+          <img src="images/household.jpg" alt="Product Image 3" class="thumbnail" data-large="images/household.jpg" />
+          <img src="images/fashion.jpg" alt="Product Image 4" class="thumbnail" data-large="images/fashion.jpg" />
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT DETAILS SECTION -->
+    <div class="product-details">
+      <h2>65W 20000mah LAPTOP POWER BANK</h2>
+      <p class="price">
+      <span class="discount">-20% </span>
+      <span class="original-price">₦ 65,000</span>
+      <span class="current-price">₦51,990</span>
+      </p>
+      <p class="rating">
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-regular fa-star"></i> 
+      <span>(26 ratings)</span>
+      </p>
+      
+      <!-- Product Description -->
+      <p class="product-description">
+        This high-capacity power bank keeps your laptop and devices charged on the go. With 20000mAh capacity and 65W fast charging, it’s ideal for work and travel.
+      </p>
+      
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="add-to-cart-btn" onclick="addToCart(this)">
+          <i class="fa fa-cart-plus"></i> Add to Cart
+        </button>
+        <button class="wishlist-btn" title="Add to Wishlist">
+          <i class="fa fa-regular fa-heart"></i>
+        </button>
+        <button class="share-btn" title="Share">
+          <i class="fa-solid fa-share"></i>
+        </button>
+      </div>
+      <p class="disclaimer"> In stock</p>
+    </div>
+  </div>
+
+  <!-- REVIEWS SECTION -->
+  <div class="reviews-section">
+    <h3>Customer Reviews</h3>
+    <div class="review">
+      <p class="review-name">John Doe</p>
+      <p class="review-rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </p>
+      <p class="review-text">Fantastic product! It exceeded my expectations in both performance and quality.</p>
+    </div>
+    <div class="review extra-review">
+      <p class="review-name">Jane Smith</p>
+      <p class="review-rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </p>
+      <p class="review-text">Absolutely love it. The charging speed and design are phenomenal!</p>
+    </div>
+    <div class="review extra-review">
+      <p class="review-name">Alice Johnson</p>
+      <p class="review-rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </p>
+      <p class="review-text">Good value for money, although I wish it were a bit lighter.</p>
+    </div>
+    <div class="review extra-review">
+      <p class="review-name">Michael Brown</p>
+      <p class="review-rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </p>
+      <p class="review-text">It works well, but the battery indicator could be improved.</p>
+    </div>
+    <div class="review extra-review">
+      <p class="review-name">Emma Wilson</p>
+      <p class="review-rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </p>
+      <p class="review-text">A solid choice for a reliable power bank for your laptop.</p>
+    </div>
+    <button id="toggle-reviews">Show More Reviews</button>
+    <button class="toggle-reviews" onclick="openReviewModal()">Give a Review</button>
+  </div>
+  
+  <!-- Review Modal -->
+  <div id="reviewModal" class="review-modal fixed inset-0 hidden items-center justify-center p-4 "  >
+  <div class="bg-white rounded-xl max-w-md w-full p-6 mt-30">
+  <div class="flex justify-between mb-4">
+  <h3 class="text-lg font-bold">Rate Product</h3>
+  <button onclick="closeReviewModal()" class="text-gray-500 hover:text-gray-700">
+  <i class="fas fa-times"></i>
+  </button>
+  </div>
+  <div class="flex gap-2 mb-4" id="starRating">
+  <!-- Stars will be populated by JS -->
+  </div>
+  <textarea class="w-full p-3 border rounded-lg mb-4" placeholder="Write your review..." rows="4"></textarea>
+  <button class="w-full bg-[var(--color-deep)] text-white py-3 rounded-lg hover:bg-[#526cd3] transition-colors">
+  Submit Review
+  </button>
+  </div>
+  </div>
+
+  <!-- PRODUCT SUGGESTIONS SECTION -->
+  <div class="suggestions-section">
+    <h3>You Might Also Like</h3>
+    <div class="suggestions-container">
+      <div class="suggestion">
+        <img src="images/electronics.jpg" alt="Suggestion 1">
+        <p>Wireless Headphones</p>
+      </div>
+      <div class="suggestion">
+        <img src="images/household.jpg" alt="Suggestion 2">
+        <p>Smart Watch</p>
+      </div>
+      <div class="suggestion">
+        <img src="images/fashion.jpg" alt="Suggestion 3">
+        <p>Bluetooth Speaker</p>
+      </div>
+      <div class="suggestion">
+        <img src="images/household.jpg" alt="Suggestion 4">
+        <p>Portable Charger</p>
+      </div>
+      <div class="suggestion">
+        <img src="images/electronics.jpg" alt="Suggestion 5">
+        <p>Gaming Mouse</p>
+      </div>
+    </div>
+  </div>
+</main>
+  <script>
+    // --- Thumbnail Image Switching ---
+    const displayedImage = document.getElementById('displayed-image');
+    const thumbnailImages = document.querySelectorAll('.thumbnail');
+    thumbnailImages.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        thumbnailImages.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        displayedImage.src = thumb.getAttribute('data-large');
+      });
+    });
+    
+    // --- Toggle Reviews Visibility ---
+    const toggleButton = document.getElementById('toggle-reviews');
+    let reviewsVisible = false;
+    toggleButton.addEventListener('click', () => {
+      const extraReviews = document.querySelectorAll('.extra-review');
+      reviewsVisible = !reviewsVisible;
+      extraReviews.forEach(review => {
+        review.style.display = reviewsVisible ? 'block' : 'none';
+      });
+      toggleButton.textContent = reviewsVisible ? 'Show Less Reviews' : 'Show More Reviews';
+    });
+    
+    function addToCart(button) {
+    let count = parseInt(button.dataset.count || 0) + 1;
+    button.dataset.count = count;
+    button.innerHTML = `<i class="fas fa-cart-plus cart-icon"></i> ${count} ${count === 1 ? 'item' : 'items'} in Cart`;
+    button.classList.add('in-cart');
+    }
+    
+    // Star Rating System
+    function initializeStars(container) {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+    stars += `
+    <i class="fas fa-star rating-star text-2xl" 
+    data-rating="${i}"
+    onmouseover="highlightStars(${i})"
+    onclick="setRating(${i})"></i>
+    `;
+    }
+    container.innerHTML = stars;
+    }
+    
+    function highlightStars(num) {
+    const stars = document.querySelectorAll('.rating-star');
+    stars.forEach((star, index) => {
+    star.classList.toggle('active', index < num);
+    });
+    }
+    
+    function resetStars() {
+    const stars = document.querySelectorAll('.rating-star');
+    stars.forEach(star => star.classList.remove('active'));
+    }
+    
+    function setRating(num) {
+    // Save rating value
+    console.log(`Rating set to: ${num}`);
+    }
+    
+    // Modal Handling
+    function openReviewModal() {
+    document.getElementById('reviewModal').classList.remove('hidden');
+    initializeStars(document.getElementById('starRating'));
+    }
+    
+    function closeReviewModal() {
+    document.getElementById('reviewModal').classList.add('hidden');
+    }
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+    const modal = document.getElementById('reviewModal');
+    if (event.target === modal) {
+    closeReviewModal();
+    }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+    // Any initialization code
+    });
+  </script>
+</body>
+</html>

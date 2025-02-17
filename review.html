@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+    <script src="./tailwind.global.js"></script>
+    <title>JC Connect - Reviews</title>
+    <style>
+    @import url('./lato/lato.css');
+    @import url('./Westport Rounded Book/Westport Rounded Book.css');
+    
+    :root {
+        --color-deep: #00004E;
+        --color-light: #6880FF;
+        --color-success: #22C55E;
+        --color-warning: #F59E0B;
+        --color-gray: #6B7280;
+    }
+
+    body {
+        font-family: "Westport Rounded Book", "Lato", sans-serif;
+        background: #f8fafc;
+    }
+    
+    .header {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 2rem;
+    }
+
+    .rating-star {
+        color: #e2e8f0;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .rating-star.active {
+        color: #ffd700;
+    }
+
+    .product-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    .review-modal {
+        background: rgba(0,0,0,0.5);
+        transition: opacity 0.3s;
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+    <a href="#" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+    <div class="page-title">Inbox</div>
+    </header>
+
+    <!-- Pending Reviews Section -->
+    <section class="max-w-6xl mx-auto px-4 py-6">
+        <h2 class="text-lg font-bold text-[var(--color-deep)] mb-4">Pending Reviews</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Sample Pending Review Items -->
+            <div class="product-card bg-white p-4 rounded-xl shadow-sm">
+                <div class="flex items-center gap-4">
+                    <img src="./images/fashion.jpg" alt="Product" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <h3 class="font-bold">Wireless Bluetooth Headphones</h3>
+                        <p class="text-sm text-gray-500">Delivered on 15/08/2025</p>
+                    </div>
+                    <button onclick="openReviewModal()" class="bg-[var(--color-deep)] text-white px-4 py-2 rounded-full text-sm hover:bg-[#526cd3] transition-colors">
+                        Review
+                    </button>
+                </div>
+            </div>
+            <!-- Add 3 more similar pending review items -->
+        </div>
+    </section>
+
+    <!-- Existing Reviews Section -->
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        <h2 class="text-lg font-bold text-[var(--color-deep)] mb-6">Your Reviews</h2>
+        <div class="space-y-6">
+            <!-- Review Item -->
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-start gap-4">
+                    <img src="./images/household.jpg" alt="Product" class="w-16 h-16 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold">Smart Fitness Tracker</h3>
+                            <span class="text-sm text-gray-500">Reviewed on 01/08/2025</span>
+                        </div>
+                        <div class="flex gap-1 text-orange-400 mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="text-gray-700">“Absolutely love this product! The battery life is amazing and the app integration works flawlessly.”</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more review items -->
+        </div>
+    </main>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="review-modal fixed inset-0 hidden items-center justify-center p-4 "  >
+        <div class="bg-white rounded-xl max-w-md w-full p-6 mt-30">
+            <div class="flex justify-between mb-4">
+                <h3 class="text-lg font-bold">Rate Product</h3>
+                <button onclick="closeReviewModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="flex gap-2 mb-4" id="starRating">
+                <!-- Stars will be populated by JS -->
+            </div>
+            <textarea class="w-full p-3 border rounded-lg mb-4" placeholder="Write your review..." rows="4"></textarea>
+            <button class="w-full bg-[var(--color-deep)] text-white py-3 rounded-lg hover:bg-[#526cd3] transition-colors">
+                Submit Review
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Star Rating System
+        function initializeStars(container) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `
+                    <i class="fas fa-star rating-star text-2xl" 
+                       data-rating="${i}"
+                       onmouseover="highlightStars(${i})"
+                       onclick="setRating(${i})"></i>
+                `;
+            }
+            container.innerHTML = stars;
+        }
+
+        function highlightStars(num) {
+            const stars = document.querySelectorAll('.rating-star');
+            stars.forEach((star, index) => {
+                star.classList.toggle('active', index < num);
+            });
+        }
+
+        function resetStars() {
+            const stars = document.querySelectorAll('.rating-star');
+            stars.forEach(star => star.classList.remove('active'));
+        }
+
+        function setRating(num) {
+            // Save rating value
+            console.log(`Rating set to: ${num}`);
+        }
+
+        // Modal Handling
+        function openReviewModal() {
+            document.getElementById('reviewModal').classList.remove('hidden');
+            initializeStars(document.getElementById('starRating'));
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('reviewModal');
+            if (event.target === modal) {
+                closeReviewModal();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Any initialization code
+        });
+    </script>
+</body>
+</html>

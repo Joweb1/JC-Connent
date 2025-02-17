@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+   <!-- <link rel="stylesheet" href="./tailwind.min.css">-->
+    <script src="./tailwind.global.js"></script>
+	<title>JC Connent</title>
+	<style type="text/css">
+	@import url('./lato/lato.css');
+	@import url('./Westport Rounded Book/Westport Rounded Book.css');
+	
+	*{
+		font-family:"Westport Rounded Book","Lato", sans-serif;
+		/*color:black;*/
+		padding:0;
+		margin:0;
+	}
+	:root{
+		--color-deep:#00004E;
+		--color-light:rgba(104, 128, 255, 1);
+	}
+        main {
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width:100%;
+            position:relative;
+        }
+
+        .container {
+            background: var(--color-light);
+            padding: 1.5rem;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width:88%;
+            max-width: 400px;
+            margin:50px auto;
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight:800;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-deep);
+        }
+        .input-group:hover i {
+        	color: white;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px 20px 8px 40px;
+            border: 2px solid var(--color-deep);
+            border-radius: 25px;
+            background: var(--color-light);
+            color:black;
+            font-size: .9rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color:white;
+            background: var(--color-light);
+            color:white;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: var(--color-deep);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        button[type="submit"]:hover {
+            background: white;
+            color:var(--color-deep);
+            border: 2px solid var(--color-deep);
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            /*background: #db4437;*/
+            color: var(--color-deep);
+            border: 2px solid var(--color-deep);
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .google-btn:hover {
+            background: var(--color-deep);
+            color:white;
+        }
+
+        .error-message {
+            color: rgba(250,250,250,.71);
+            font-size: 0.8rem;
+            margin-top: -20px;
+            padding-left: 40px;
+            display:none;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color:white;
+            font-size:15px;
+        }
+
+        .login-link a {
+            color: var(--color-deep);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-icon {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+	<main>
+    <div class="container">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+            <div class="input-group" >
+                <i class="fas fa-user"></i>
+                <input type="text" id="fullname" placeholder="Full Name">
+            </div>
+            <div class="error-message" id="nameError"></div>
+
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email">
+            </div>
+            <div class="error-message" id="emailError"></div>
+
+            <div class="input-group">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="phone" placeholder="Phone Number">
+            </div>
+            <div class="error-message" id="phoneError"></div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password">
+            </div>
+            <div class="error-message" id="passwordError"></div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+            </div>
+            <div class="error-message" id="confirmPasswordError"></div>
+
+            <button type="submit">
+                <i class="fas fa-user-plus btn-icon"></i>Sign Up
+            </button>
+        </form>
+
+        <button class="google-btn" id="googleSignIn">
+            <i class="fab fa-google btn-icon"></i>Sign Up with Google
+        </button>
+
+        <p class="login-link">Already have an account? <a href="signin.html">Log in</a></p>
+    </div>
+</main>
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            validateForm();
+        });
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.textContent = '';
+                error.style.display = 'none';
+            });
+        }
+
+        function validateForm() {
+            clearErrors();
+
+            const fullName = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+            let isValid = true;
+
+            if (fullName === '') {
+                showError('nameError', 'Full name is required');
+                isValid = false;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            const phonePattern = /^[0-9]{10,15}$/;
+            if (!phonePattern.test(phone)) {
+                showError('phoneError', 'Please enter a valid phone number (10-15 digits)');
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                showError('passwordError', 'Password must be at least 6 characters');
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                showError('confirmPasswordError', 'Passwords do not match');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Sign-up successful!');
+                // Add your form submission logic here
+            }
+        }
+
+        // Google Sign-In Handler
+        document.getElementById('googleSignIn').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Implement Google Sign-In logic here
+            alert('Google Sign-In clicked');
+        });
+    </script>
+</body>
+</html>

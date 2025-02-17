@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Account Settings</title>
+  <link rel="stylesheet" href="./fontawesome/css/all.css">
+  <script src="./tailwind.global.js"></script>
+  <style type="text/css">
+    /* Updated Styles */
+    @import url('./lato/lato.css');
+    @import url('./Westport Rounded Book/Westport Rounded Book.css');
+    
+    * {
+      font-family: "Westport Rounded Book", "Lato", sans-serif;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+    :root {
+      --primary-color: #00004E;
+      --secondary-color: #00004E;
+      --accent-color: #F1C40F;
+      --text-color: #2C3E50;
+      --bg-color: #F8F9FA;
+      --color-green:#27AE60;
+    }
+    
+    .header {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 2rem;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .order-summary-container {
+      max-width: 480px;
+      margin: 0rem auto;
+      background: white;
+      border-radius: 15px;
+      opacity: 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transform: translateY(-20px);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .order-summary-header {
+      background: linear-gradient(135deg, var(--color-green), var(--secondary-color));
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .order-summary-header::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: var(--bg-color);
+      border-radius: 20px;
+    }
+
+    .order-summary-header h2 {
+      font-size: 1.8rem;
+      font-weight:800;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .order-details {
+      padding: 1.5rem;
+    }
+
+    .order-amount-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .order-amount-row.total {
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-bottom: none;
+      color: var(--secondary-color);
+    }
+
+    .coupon-container {
+      position: relative;
+      margin: 1.5rem 0;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .coupon-container input {
+      padding: 0.8rem 2.5rem;
+      border: 2px solid #eee;
+      border-radius: 8px;
+      font-size: 1rem;
+      width:100%;
+      outline-color:var(--color-green);
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999999" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M14 9l-1-2H7V5.72c.6-.34 1-.98 1-1.72 0-1.1-.9-2-2-2s-2 .9-2 2c0 .74.4 1.38 1 1.72V21h2v-4h5l1 2h7V9h-6zm4 8h-4l-1-2H7V9h5l1 2h5v6z"/></svg>') no-repeat 1rem center;
+    }
+
+    .coupon-container button {
+      background: var(--color-green);
+      color: white;
+      font-weight:700;
+      border: none;
+      padding: 0 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .coupon-container button:hover {
+      
+      transform: translateY(-2px);
+    }
+
+    .section {
+      margin: 1.5rem 0;
+      background: #F8F9FA;
+      border-radius: 10px;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .section-header h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .section-header .edit-btn {
+      color: var(--primary-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .section-content {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: white;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    .delivery-method select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #eee;
+      border-radius: 8px;
+      appearance: none;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%232C3E50" width="24px" height="24px"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 1rem center;
+    }
+
+    .product-item {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .product-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .confirm-order-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--color-green), var(--secondary-color));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .confirm-order-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--primary-color);
+    }
+
+	.success-message h3 {
+	font-size: 1.7rem;
+	font-weight:800;
+	color: var(--color-green);
+	}
+    .success-message i {
+      font-size: 3rem;
+      color: var(--color-green);
+      margin-bottom: 1rem;
+      animation: bounce 1s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    /* Delivery Method Toggle */
+    .delivery-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    }
+    
+    .delivery-option {
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    }
+    
+    .delivery-option.active {
+    border-color: var(--color-green) !important;
+    background: rgba(150,230,140,0.1);
+    }
+    
+    /* Address Section */
+    .address-section {
+    margin: 1rem 0;
+    background: #F8F9FA;
+    border-radius: 10px;
+    padding: 1rem;
+    }
+    
+    .address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    }
+    
+    .address-content p {
+    margin: 0.5rem 0;
+    }
+    
+    .change-address-btn {
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    }
+    /* Rest of previous styles... */
+    /* (Maintain previous styles and add new ones below) */
+    
+    .address-form {
+    display: none;
+    margin-top: 1rem;
+    }
+    
+    .address-form.active {
+    display: block;
+    }
+    
+    .form-group {
+    margin-bottom: 1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    }
+    
+    .save-address-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    }
+    
+    .pickup-stations {
+    display: none;
+    margin: 2rem 0rem;
+    }
+    .pickup-stations h3{
+    	font-weight:800;
+    }
+    .pickup-stations select {
+    	font-size:16px;
+    	outline:none;
+    	padding:20px;
+    	border-radius:30px;
+    	border: 2px solid #eee;
+    	width:100%;
+    	
+    }
+    .pickup-stations.active {
+    display: block;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 480px) {
+    .order-summary-container {
+    margin: 0rem;
+    border-radius: 10px;
+    }
+    
+    .product-item {
+    flex-direction: column;
+    align-items: flex-start;
+    }
+    
+    .delivery-toggle {
+    grid-template-columns: 1fr 1fr;
+    }
+    
+    .coupon-container button {
+    padding: 0 1rem;
+    }
+    }
+    
+  </style>
+</head>
+<body>
+<header class="header">
+    <a href="#" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+    <div class="page-title">Order Summary</div>
+  </header>
+  <div class="order-summary-container">
+    <div class="order-summary-header">
+      <h2>Order Summary</h2>
+      <p>2 items in your cart</p>
+    </div>
+
+    <div class="order-details">
+    <!--
+      <div class="product-item">
+        <img src="https://via.placeholder.com/80" class="product-image" alt="Product">
+        <div>
+          <h4>Wireless Headphones</h4>
+          <p>₦14,500 × 1</p>
+          <small><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> In stock</small>
+        </div>
+      </div>
+
+      <div class="product-item">
+        <img src="https://via.placeholder.com/80" class="product-image" alt="Product">
+        <div>
+          <h4>Smart Watch</h4>
+          <p>₦14,999 × 1</p>
+          <small><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> In stock</small>
+        </div>
+      </div>
+	-->
+      <div class="order-amount-row">
+        <span>2 items</span>
+        <span>₦29,499</span>
+      </div>
+      <div class="order-amount-row">
+        <span>Delivery</span>
+        <span>₦1,320</span>
+      </div>
+      <div class="order-amount-row total">
+        <span>Total</span>
+        <span>₦30,819</span>
+      </div>
+
+      <div class="coupon-container">
+        <input type="text" placeholder="Enter coupon code">
+        <button onclick="applyCoupon()"><i class="fas fa-tag"></i> Apply</button>
+      </div>
+
+      <!-- Sections with dropdown functionality -->
+      <div class="section">
+        <div class="section-header">
+          <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+          <span class="edit-btn" onclick="toggleDropdown(this)"><i class="fas fa-edit"></i> Change</span>
+        </div>
+        <div class="section-content">
+          <p>Visa ending in 4242</p>
+          <div class="dropdown-content">
+            <!-- Add payment method options here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="delivery-toggle">
+      <div class="delivery-option active" onclick="selectDelivery('home')">
+      <i class="fas fa-home"></i>
+      <p>Home Delivery</p>
+      </div>
+      <div class="delivery-option" onclick="selectDelivery('pickup')">
+      <i class="fas fa-store"></i>
+      <p>Pickup Station</p>
+      </div>
+      </div>
+      
+      <!-- Home Delivery Section -->
+      <div class="address-section" id="homeDelivery">
+      <div class="address-header">
+      <h3><i class="fas fa-map-marker-alt"></i> Delivery Address</h3>
+      <div class="change-address-btn" onclick="toggleAddressForm()">
+      <i class="fas fa-edit"></i>
+      <span>Change</span>
+      </div>
+      </div>
+      <div class="address-content" id="currentAddress">
+      <p>John Doe</p>
+      <p>123 Main Street</p>
+      <p>Lagos, Nigeria</p>
+      </div>
+      <div class="address-form" id="addressForm">
+      <div class="form-group">
+      <input type="text" placeholder="Full Name">
+      </div>
+      <div class="form-group">
+      <input type="text" placeholder="State">
+      </div>
+      <div class="form-group">
+      <input type="text" placeholder="Country">
+      </div>
+      <div class="form-group">
+      <textarea placeholder="Home Address"></textarea>
+      </div>
+      <button class="save-address-btn" onclick="saveAddress()">Save Address</button>
+      </div>
+      </div>
+      
+      <!-- Pickup Stations Section -->
+      <div class="pickup-stations" id="pickupStations">
+      <div class="address-header">
+      <h3><i class="fas fa-map-pin"></i> Select Pickup Station</h3>
+      </div>
+      <select class="delivery-method">
+      <option>Victoria Island Station</option>
+      <option>Lekki Phase 1 Station</option>
+      <option>Ikeja City Mall Station</option>
+      </select>
+      </div>
+      
+      <button class="confirm-order-btn" onclick="confirmOrder()">
+      <i class="fas fa-lock"></i> Confirm Order
+      </button>
+      
+</div>
+      <div class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <h3>Order Confirmed!</h3>
+        <p>Your order has been successfully placed</p>
+      </div>
+    </div>
+
+  <script>
+    function toggleDropdown(btn) {
+      const dropdown = btn.closest('.section').querySelector('.dropdown-content');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function applyCoupon() {
+      const couponInput = document.querySelector('.coupon-container input');
+      if (couponInput.value === 'SAVE10') {
+        alert('Coupon applied! 10% discount added');
+        // Add discount calculation logic here
+      } else {
+        alert('Invalid coupon code');
+      }
+    }
+
+    function confirmOrder() {
+      document.querySelector('.order-details').style.display = 'none';
+      document.querySelector('.success-message').style.display = 'block';
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.section')) {
+        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+          dropdown.style.display = 'none';
+        });
+      }
+    });
+	// Delivery Method Selection
+	function selectDelivery(type) {
+	document.querySelectorAll('.delivery-option').forEach(opt => 
+	opt.classList.remove('active'));
+	event.currentTarget.classList.add('active');
+	
+	document.getElementById('homeDelivery').style.display = 
+	type === 'home' ? 'block' : 'none';
+	document.getElementById('pickupStations').style.display = 
+	type === 'pickup' ? 'block' : 'none';
+	}
+	
+	// Address Form Toggle
+	function toggleAddressForm() {
+	const form = document.getElementById('addressForm');
+	form.classList.toggle('active');
+	}
+	
+	// Save New Address
+	function saveAddress() {
+	const name = document.querySelector('#addressForm input').value;
+	const address = document.querySelector('#addressForm textarea').value;
+	
+	document.getElementById('currentAddress').innerHTML = `
+	<p>${name}</p>
+	<p>${address}</p>
+	`;
+	toggleAddressForm();
+	}
+	
+	// Initialize default delivery method
+	selectDelivery('home');
+    // Initial animation
+    document.querySelector('.order-summary-container').style.opacity = 1;
+  </script>
+</body>
+</html>
